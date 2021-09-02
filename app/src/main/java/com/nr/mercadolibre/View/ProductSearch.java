@@ -2,11 +2,13 @@ package com.nr.mercadolibre.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nr.mercadolibre.Interface.Product.ProductInterface;
@@ -20,9 +22,11 @@ import java.util.ArrayList;
 public class ProductSearch extends AppCompatActivity implements ProductInterface.InterfaceView, SearchView.OnQueryTextListener {
 
     private ProductPresenter mPresenter;
-    private TextView txterror;
-    private RecyclerView recyclerView;
+    private LinearLayout errorbusqueda;
     private AdapterProducto adapterProducto;
+    private ProgressBar progressbarLoading;
+    private TextView reintento;
+    private LinearLayout notnetwork;
     androidx.appcompat.widget.SearchView searchView;
 
     @Override
@@ -30,8 +34,10 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_search);
         mPresenter = new ProductPresenter(this,getApplicationContext());
-        txterror=findViewById(R.id.txterror);
-        recyclerView = findViewById(R.id.recycler1);
+        errorbusqueda=findViewById(R.id.errorbusqueda);
+        reintento=findViewById(R.id.reintento);
+        notnetwork=findViewById(R.id.notnetwork);
+        progressbarLoading=findViewById(R.id.progressbar_apoddetail_loading);
         searchView = findViewById(R.id.searchview);
         searchView.setOnQueryTextListener(this);
     }
@@ -43,46 +49,36 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
 
     @Override
     public void showProgresBar() {
+        progressbarLoading.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideProgresBar() {
-
-    }
-
-    @Override
-    public void showResult() {
-
-    }
-
-    @Override
-    public void hideResult() {
+        progressbarLoading.setVisibility(View.GONE);
 
     }
 
     @Override
     public void showApodDetails(ArrayList<Product> productos) {
-        txterror.setVisibility(View.GONE);
-        adapterProducto = new AdapterProducto(productos,this);
-        recyclerView.setAdapter(adapterProducto);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void fetchProductDetails() {
-
+        errorbusqueda.setVisibility(View.GONE);
+        Context context = this;
+        Intent showPostIntent = new Intent();
+        showPostIntent.setClass(context, ProductList.class);
+        showPostIntent.putExtra("Productos",productos);
+        context.startActivity(showPostIntent);
     }
 
     @Override
     public void showNetworkError() {
+        notnetwork.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void reloadData() {
-
+        notnetwork.setVisibility(View.GONE);
+        requestData(searchView.getQuery().toString());
     }
 
     @Override
@@ -96,4 +92,6 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
     public boolean onQueryTextChange(String newText) {
         return false;
     }
+
+    public  void onViewClickedReload(View view){reloadData();}
 }

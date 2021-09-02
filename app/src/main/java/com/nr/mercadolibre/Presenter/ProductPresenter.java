@@ -24,22 +24,27 @@ public class ProductPresenter implements ProductInterface.InterfacePresenter {
 
     @Override
     public void onSuccessResult(ArrayList<Product> productos) {
+        view.hideProgresBar();
         view.showApodDetails(productos);
 
     }
 
     @Override
     public void requestData(String q) {
-        if (isOutputInternet())
+        view.showProgresBar();
+        if (isOutputInternet()){
             productInterator.querySearch(q);
-        else
+        }
+        else{
+            view.hideProgresBar();
             view.showNetworkError();
-
-
+        }
     }
 
     @Override
-    public void showError() {
+    public void onFailureResult() {
+        view.showNetworkError();
+        view.hideProgresBar();
 
     }
     private boolean isOutputInternet(){

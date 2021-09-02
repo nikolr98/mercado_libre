@@ -23,32 +23,53 @@
             android:layout_margin="8dp">
         </androidx.appcompat.widget.SearchView>
     </LinearLayout>
-    <TextView
-        android:id="@+id/txterror"
+    <LinearLayout
+        android:id="@+id/errorbusqueda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="ERROR, NO SE CARGARON LOS DATOS"
-        android:visibility="gone"
-        />
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/error_sin_result"
+            android:text="@string/error_sin_result" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error_sin_result_palabra"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/notnetwork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/error_network"
+            android:text="@string/error_network"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/reintento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onViewClickedReload"
+            android:textColor="@color/azul"
+            android:text="@string/error_network_reintent"
+            android:layout_marginLeft="90dp" />
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progressbar_apoddetail_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_centerInParent="true"/>
-
-    <LinearLayout
-        android:layout_below="@id/relative1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="15dp">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_margin="5dp"
-            android:id="@+id/recycler1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -18,17 +18,8 @@ public interface ProductInterface {
         //Para ocultar el progressbar cuando ya se cargaron los datos
         void hideProgresBar();
 
-        //Mostrar todos los datos
-        void showResult ();
-
-        //Mostrar un mensaje de error cuando no se encuentren los datos
-        void hideResult ();
-
         //Va obtener del ApodDetailPresenter los datos que le pidio al modelo que van a ir dentro de la vista
         void showApodDetails(ArrayList<Product> productos);
-
-        //Va llamar a un metodo del ApodDetailPresenter para traer los datos del modelo(Interaccion entre el usuario con el presenter)
-        void fetchProductDetails();
 
         //Va mostrar un error si no se trae la informacion
         void showNetworkError();
@@ -48,7 +39,7 @@ public interface ProductInterface {
         void requestData(String q);
 
         //Aqui el presenter muestre error en caso de que la consulta falle
-        void showError();
+        void onFailureResult();
 
     }
 
