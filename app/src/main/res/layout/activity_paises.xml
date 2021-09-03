@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="15dp"
-    tools:context=".View.Product.ProductList">
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_margin="5dp"
-            android:id="@+id/recycler1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    tools:context=".View.Country.Paises">
+    <ListView
+        android:id="@+id/listaPaises"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.15"
+        android:layout_marginTop="20dp">
+
+    </ListView>
 
 </RelativeLayout>

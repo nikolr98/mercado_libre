@@ -4,4 +4,6 @@
     <string name="error_sin_result_palabra">Revisa que la palabra esté bien escrita.</string>
     <string name="error_network">¡Parece que no hay internet!</string>
     <string name="error_network_reintent">Reintentar</string>
+    <string name="categoria">Categorias</string>
+    <string name="paises">Paises</string>
 </resources>

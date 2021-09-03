@@ -6,16 +6,24 @@ import androidx.appcompat.widget.SearchView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nr.mercadolibre.Interface.Product.ProductInterface;
 import com.nr.mercadolibre.Model.Entities.Product;
-import com.nr.mercadolibre.Presenter.ProductPresenter;
+import com.nr.mercadolibre.Presenter.Product.ProductPresenter;
 import com.nr.mercadolibre.R;
 import com.nr.mercadolibre.View.Adapter.AdapterProducto;
+import com.nr.mercadolibre.View.Category.Categorias;
+import com.nr.mercadolibre.View.Country.Paises;
+import com.nr.mercadolibre.View.Product.ProductList;
 
 import java.util.ArrayList;
 
@@ -23,10 +31,11 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
 
     private ProductPresenter mPresenter;
     private LinearLayout errorbusqueda;
-    private AdapterProducto adapterProducto;
     private ProgressBar progressbarLoading;
     private TextView reintento;
     private LinearLayout notnetwork;
+    private LinearLayout noResult;
+    private ImageView menu;
     androidx.appcompat.widget.SearchView searchView;
 
     @Override
@@ -37,9 +46,47 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
         errorbusqueda=findViewById(R.id.errorbusqueda);
         reintento=findViewById(R.id.reintento);
         notnetwork=findViewById(R.id.notnetwork);
+        menu=findViewById(R.id.menu);
+        noResult=findViewById(R.id.errorbusqueda);
         progressbarLoading=findViewById(R.id.progressbar_apoddetail_loading);
         searchView = findViewById(R.id.searchview);
         searchView.setOnQueryTextListener(this);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptionsMenu();
+            }
+        });
+    }
+
+    private void OptionsMenu() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow( searchView.getWindowToken(), 0);
+        RelativeLayout contenedor = (RelativeLayout) findViewById(R.id.principal);
+        final LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        inflater.inflate(R.layout.nav_menu,contenedor,true);
+
+        TextView categorias = findViewById(R.id.categorias);
+        categorias.setOnClickListener(v -> {
+            Intent i = new Intent(ProductSearch.this, Categorias.class);
+            i.putExtra("flag", false);
+            startActivity(i);
+
+        });
+        TextView paises = findViewById(R.id.paises);
+        paises.setOnClickListener(v -> {
+            Intent i = new Intent(ProductSearch.this, Paises.class);
+            startActivity(i);
+
+        });
+
+        RelativeLayout m = findViewById(R.id.menuOptions);
+        m.setOnClickListener(v -> removeOptionsMenu());
+    }
+    private void removeOptionsMenu(){
+        ViewGroup menu = findViewById(R.id.principal);
+        RelativeLayout options = findViewById(R.id.menuOptions);
+        menu.removeView(options);
     }
 
     @Override
@@ -62,11 +109,10 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
     @Override
     public void showApodDetails(ArrayList<Product> productos) {
         errorbusqueda.setVisibility(View.GONE);
-        Context context = this;
-        Intent showPostIntent = new Intent();
-        showPostIntent.setClass(context, ProductList.class);
-        showPostIntent.putExtra("Productos",productos);
-        context.startActivity(showPostIntent);
+        Intent showProductIntent = new Intent();
+        showProductIntent.setClass(ProductSearch.this, ProductList.class);
+        showProductIntent.putExtra("Productos",productos);
+        startActivity(showProductIntent);
     }
 
     @Override
@@ -79,6 +125,21 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
     public void reloadData() {
         notnetwork.setVisibility(View.GONE);
         requestData(searchView.getQuery().toString());
+    }
+
+    @Override
+    public void showError() {
+        noResult.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideNetworkError() {
+        notnetwork.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideError() {
+        noResult.setVisibility(View.GONE);
     }
 
     @Override

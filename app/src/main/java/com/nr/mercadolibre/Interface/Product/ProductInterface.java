@@ -27,6 +27,12 @@ public interface ProductInterface {
         //Un boton para buscar la informacion nuevamente del servidor
         void reloadData();
 
+        void showError();
+
+        void hideNetworkError ();
+
+        void hideError ();
+
     }
 
     //En esta interfaz se tiene todos los metedos que va a usar ProductoPresenter
@@ -41,6 +47,8 @@ public interface ProductInterface {
         //Aqui el presenter muestre error en caso de que la consulta falle
         void onFailureResult();
 
+        void onFailureNetwork();
+
     }
 
     //En esta interfaz se tiene todos los metedos que va a usar ProductInteractor
@@ -54,5 +62,8 @@ public interface ProductInterface {
 
         //Resultado Fallido
         void onFailureResult();
+
+        void onFailureNetwork();
+
     }
 }

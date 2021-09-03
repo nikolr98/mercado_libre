@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nr.mercadolibre.Model.Entities.Product;
 import com.nr.mercadolibre.R;
-import com.nr.mercadolibre.View.ProductDetail;
+import com.nr.mercadolibre.View.Product.ProductDetail;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;

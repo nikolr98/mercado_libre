@@ -1,4 +1,4 @@
-package com.nr.mercadolibre.View;
+package com.nr.mercadolibre.View.Product;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

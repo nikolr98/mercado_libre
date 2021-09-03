@@ -1,4 +1,8 @@
-package com.nr.mercadolibre.Model;
+package com.nr.mercadolibre.Model.Product;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.nr.mercadolibre.Interface.Api.ApiService;
 import com.nr.mercadolibre.Interface.Product.ProductInterface;
@@ -15,13 +19,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductInteractor implements ProductInterface.InterfaceModel {
 
     private ProductInterface.InterfacePresenter presenter;
-
-    public ProductInteractor(ProductInterface.InterfacePresenter presenter) {
+    private Context context;
+    public ProductInteractor(ProductInterface.InterfacePresenter presenter,Context context) {
         this.presenter = presenter;
+        this.context=context;
+
     }
 
     @Override
     public void querySearch(String q) {
+        if (!isOutputInternet()){
+            onFailureNetwork();
+          return;
+        }
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.mercadolibre.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -60,6 +71,18 @@ public class ProductInteractor implements ProductInterface.InterfaceModel {
 
     @Override
     public void onFailureResult() {
+        presenter.onFailureResult();
+    }
 
+    @Override
+    public void onFailureNetwork() {
+        presenter.onFailureNetwork();
+
+    }
+
+    private boolean isOutputInternet(){
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
     }
 }

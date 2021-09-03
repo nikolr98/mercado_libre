@@ -4,13 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.">
+    android:id="@+id/principal"
+    tools:context=".View.ProductSearch">
+
     <LinearLayout
         android:id="@+id/relative1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/background"
         android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/menu"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp">
+        </ImageView>
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchview"
             app:iconifiedByDefault="false"
@@ -22,6 +32,11 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="8dp">
         </androidx.appcompat.widget.SearchView>
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="8dp"></ImageView>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/errorbusqueda"
