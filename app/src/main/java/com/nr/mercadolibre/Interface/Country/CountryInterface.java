@@ -17,16 +17,6 @@ public interface CountryInterface {
 
         void showApodDetails(List<Country> countries);
 
-        void showNetworkError();
-
-        void reloadData();
-
-        void showError();
-
-        void hideNetworkError();
-
-        void hideError ();
-
     }
 
 
@@ -36,19 +26,13 @@ public interface CountryInterface {
 
         void requestData();
 
-        void onFailureResult();
-
-        void onFailureNetwork();
-
     }
 
     interface  InterfaceModel{
 
         void querySearch();
 
-        void successfulQuery(ArrayList<Country> countries);
-
-        void onFailureResult();
+        void successfulQuery(List<Country> countries);
 
     }
 }

@@ -1,5 +1,7 @@
 package com.nr.mercadolibre.Presenter.Category;
 
+import android.content.Context;
+
 import com.nr.mercadolibre.Interface.Category.CategoryInterface;
 import com.nr.mercadolibre.Interface.Country.CountryInterface;
 import com.nr.mercadolibre.Model.Category.CategoryInteractor;
@@ -21,12 +23,14 @@ public class CategoryPresenter implements CategoryInterface.InterfacePresenter {
     }
     @Override
     public void onSuccessResult(List<Category> categories) {
+        view.hideProgresBar();
         view.showApodDetails(categories);
 
     }
 
     @Override
     public void requestData(String id) {
+        view.showProgresBar();
         categoryInterator.querySearch( id);
 
     }

@@ -21,8 +21,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
                 android:text="TITULO"/>
             <ImageView
                 android:id="@+id/img2"
@@ -40,12 +40,14 @@
                     android:layout_marginRight="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="24dp"
                     android:text="$"/>
                 <TextView
                     android:id="@+id/precio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="24dp"
                     android:text="000000"/>
 
@@ -58,7 +60,7 @@
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:text="Información del producto"
                 />
 

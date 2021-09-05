@@ -11,13 +11,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MercadoLibre"
-        android:configChanges="orientation|keyboardHidden|screenSize">
-        <activity android:name=".View.Country.Paises"/>
+        android:theme="@style/Theme.MercadoLibre">
+        <activity android:name=".View.ProductCategory.ProductsCategory"></activity>
+        <activity android:name=".View.Country.Paises" />
         <activity android:name=".View.Category.Categorias" />
         <activity android:name=".View.Product.ProductList" />
         <activity android:name=".View.Product.ProductDetail" />
-        <activity android:name=".View.ProductSearch"/>
+        <activity android:name=".View.ProductSearch"
+                  android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

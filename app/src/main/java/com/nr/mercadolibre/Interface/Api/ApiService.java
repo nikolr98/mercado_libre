@@ -21,4 +21,7 @@ public interface ApiService {
 
     @GET(EndPoints.GET_CATEGORYCOUNTRY)
     Call<List<Category>> getCategory(@Path("id") String id);
+
+    @GET(EndPoints.GET_PRODUCTSFORCATEGORY)
+    Call<ListaProduct> getProductForCategory(@Path("id_pais") String id_pais,@Query("category") String category);
 }

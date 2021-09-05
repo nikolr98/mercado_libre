@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.nr.mercadolibre.Interface.Country.CountryInterface;
 import com.nr.mercadolibre.Model.Entities.Category;
@@ -25,10 +26,12 @@ import java.util.List;
 public class Paises extends AppCompatActivity implements CountryInterface.InterfaceView {
     ListView listaPaises;
     private CountryPresenter presenter;
+    private ProgressBar progressbarLoading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paises);
+        progressbarLoading=findViewById(R.id.progressbar_loading);
         listaPaises=findViewById(R.id.listaPaises);
         presenter = new CountryPresenter(this);
         requestData();
@@ -41,11 +44,13 @@ public class Paises extends AppCompatActivity implements CountryInterface.Interf
 
     @Override
     public void showProgresBar() {
+        progressbarLoading.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideProgresBar() {
+        progressbarLoading.setVisibility(View.GONE);
 
     }
 
@@ -70,30 +75,4 @@ public class Paises extends AppCompatActivity implements CountryInterface.Interf
 
     }
 
-
-    @Override
-    public void showNetworkError() {
-
-    }
-
-    @Override
-    public void reloadData() {
-
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void hideNetworkError() {
-
-    }
-
-    @Override
-    public void hideError() {
-
-    }
 }

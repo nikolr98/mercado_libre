@@ -24,23 +24,16 @@ public class CountryPresenter implements CountryInterface.InterfacePresenter {
 
     @Override
     public void onSuccessResult(List<Country> countries) {
+        view.hideProgresBar();
         view.showApodDetails(countries);
 
     }
 
     @Override
     public void requestData() {
+        view.showProgresBar();
         countryInterator.querySearch();
 
     }
 
-    @Override
-    public void onFailureResult() {
-
-    }
-
-    @Override
-    public void onFailureNetwork() {
-
-    }
 }

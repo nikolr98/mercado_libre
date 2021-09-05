@@ -3,13 +3,9 @@ package com.nr.mercadolibre.Model.Category;
 import android.util.Log;
 
 import com.nr.mercadolibre.Interface.Category.CategoryInterface;
-import com.nr.mercadolibre.Interface.Country.CountryInterface;
 import com.nr.mercadolibre.Model.Entities.Category;
-import com.nr.mercadolibre.Model.Entities.Country;
-import com.nr.mercadolibre.Presenter.Category.CategoryPresenter;
 import com.nr.mercadolibre.rest.ApiAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,7 +29,8 @@ public class CategoryInteractor implements CategoryInterface.InterfaceModel {
                 if (response.isSuccessful()) {
                     List<Category> listCategory=response.body();
                     if (listCategory != null) {
-                        presenter.onSuccessResult(listCategory);
+                        successfulQuery(listCategory);
+
                     } else {
                         Log.e("onResponseUsers", "Response is null");
                     }
@@ -49,8 +46,9 @@ public class CategoryInteractor implements CategoryInterface.InterfaceModel {
     }
 
     @Override
-    public void successfulQuery(ArrayList<Country> countries) {
-
+    public void successfulQuery(List<Category> countries) {
+        presenter.onSuccessResult(countries);
     }
+
 
 }

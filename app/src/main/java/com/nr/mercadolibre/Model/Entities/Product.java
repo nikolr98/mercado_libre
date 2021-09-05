@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Product implements Serializable {
     private String title;
-    private int price;
+    private float price;
     private  int available_quantity;
     private ArrayList<AtributosProduct> attributes;
     private  String thumbnail;
@@ -18,11 +18,11 @@ public class Product implements Serializable {
         this.title = title;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

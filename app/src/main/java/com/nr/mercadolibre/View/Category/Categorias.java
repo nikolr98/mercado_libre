@@ -8,14 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.nr.mercadolibre.Interface.Category.CategoryInterface;
 import com.nr.mercadolibre.Model.Entities.Category;
-import com.nr.mercadolibre.Model.Entities.Country;
 import com.nr.mercadolibre.Presenter.Category.CategoryPresenter;
-import com.nr.mercadolibre.Presenter.Country.CountryPresenter;
 import com.nr.mercadolibre.R;
-import com.nr.mercadolibre.View.Country.Paises;
+import com.nr.mercadolibre.View.ProductCategory.ProductsCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,8 @@ import java.util.List;
 public class Categorias extends AppCompatActivity implements CategoryInterface.InterfaceView {
     private ListView listaCategoria;
     private CategoryPresenter presenter;
-    private String id;
+    private ProgressBar progressbarLoading;
+    private String id_pais;
      boolean flagCategoria;
 
     @Override
@@ -31,17 +31,28 @@ public class Categorias extends AppCompatActivity implements CategoryInterface.I
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorias);
         listaCategoria=findViewById(R.id.listaPaises);
-        flagCategoria = getIntent().getExtras().getBoolean("cat");
-        id=((flagCategoria)?getIntent().getExtras().getString("pais"):"MLA");
-
+        progressbarLoading=findViewById(R.id.progressbar_loading);
+        flagCategoria = getIntent().getExtras().getBoolean("flag");
+        id_pais=((flagCategoria)?getIntent().getExtras().getString("pais"):"MCO");
         presenter = new CategoryPresenter(this);
-        requestData(id);
+        requestData(id_pais);
     }
 
 
     @Override
-    public void requestData( String id) {
-        presenter.requestData(id);
+    public void requestData( String id_pais) {
+        presenter.requestData(id_pais);
+
+    }
+    @Override
+    public void showProgresBar() {
+        progressbarLoading.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void hideProgresBar() {
+        progressbarLoading.setVisibility(View.GONE);
 
     }
 
@@ -54,6 +65,16 @@ public class Categorias extends AppCompatActivity implements CategoryInterface.I
         }
         ArrayAdapter<String> a=new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,list);
         listaCategoria.setAdapter(a);
+        listaCategoria.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent showCategoryIntent = new Intent();
+                showCategoryIntent.setClass(Categorias.this, ProductsCategory.class);
+                showCategoryIntent.putExtra("categoria", categories.get(position).getId());
+                showCategoryIntent.putExtra("pais",id_pais);
+                startActivity(showCategoryIntent);
+            }
+        });
 
     }
 

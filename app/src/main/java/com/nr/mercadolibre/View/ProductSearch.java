@@ -36,7 +36,8 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
     private LinearLayout notnetwork;
     private LinearLayout noResult;
     private ImageView menu;
-    androidx.appcompat.widget.SearchView searchView;
+    private ImageView imaBuscar;
+    private androidx.appcompat.widget.SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
         reintento=findViewById(R.id.reintento);
         notnetwork=findViewById(R.id.notnetwork);
         menu=findViewById(R.id.menu);
+        imaBuscar=findViewById(R.id.icono_buscar);
         noResult=findViewById(R.id.errorbusqueda);
         progressbarLoading=findViewById(R.id.progressbar_apoddetail_loading);
         searchView = findViewById(R.id.searchview);
@@ -57,6 +59,12 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
                 OptionsMenu();
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        imaBuscar.setVisibility(View.VISIBLE);
     }
 
     private void OptionsMenu() {
@@ -91,6 +99,7 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
 
     @Override
     public void requestData(String q) {
+        imaBuscar.setVisibility(View.GONE);
         mPresenter.requestData(q);
     }
 

@@ -1,7 +1,11 @@
-package com.nr.mercadolibre.Model.Product;
+package com.nr.mercadolibre.Model.ProductCategory;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.nr.mercadolibre.Interface.Product.ProductInterface;
+import com.nr.mercadolibre.Interface.ProductCategory.ProductCategoryInterface;
 import com.nr.mercadolibre.Model.Entities.ListaProduct;
 import com.nr.mercadolibre.Model.Entities.Product;
 import com.nr.mercadolibre.Utils.ConexionInternet;
@@ -13,42 +17,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductInteractor implements ProductInterface.InterfaceModel {
-
-    private ProductInterface.InterfacePresenter presenter;
-    private Context context;
-    public ProductInteractor(ProductInterface.InterfacePresenter presenter,Context context) {
+public class ProductCategoryInteractor implements ProductCategoryInterface.InterfaceModel {
+    private ProductCategoryInterface.InterfacePresenter presenter;
+    public ProductCategoryInteractor(ProductCategoryInterface.InterfacePresenter presenter) {
         this.presenter = presenter;
-        this.context=context;
 
     }
 
     @Override
-    public void querySearch(String q) {
-        if (!ConexionInternet.isOutputInternet(context)){
-            onFailureNetwork();
-          return;
-        }
+    public void querySearch(String id_pais,String id_categoria) {
 
-        Call<ListaProduct> listaproductos = ApiAdapter.getApiService().obtenerListaProductos(q);
+        Call<ListaProduct> listaproductos = ApiAdapter.getApiService().getProductForCategory(id_pais,id_categoria);
         listaproductos.enqueue(new Callback<ListaProduct>() {
             @Override
             public void onResponse(Call<ListaProduct> call, Response<ListaProduct> response) {
-                if(!response.isSuccessful()) {
-                    onFailureResult();
-                }
                 ListaProduct listadeproductos = response.body();
                 ArrayList<Product> productos = listadeproductos.getResults();
                 if(productos.size()>0) {
                     successfulQuery(productos);
-                }else{
-                    onFailureResult();
                 }
             }
 
             @Override
             public void onFailure(Call<ListaProduct> call, Throwable t) {
-                onFailureResult();
             }
         });
 
@@ -57,17 +48,6 @@ public class ProductInteractor implements ProductInterface.InterfaceModel {
     @Override
     public void successfulQuery(ArrayList<Product> productos) {
         presenter.onSuccessResult(productos);
-
-    }
-
-    @Override
-    public void onFailureResult() {
-        presenter.onFailureResult();
-    }
-
-    @Override
-    public void onFailureNetwork() {
-        presenter.onFailureNetwork();
 
     }
 

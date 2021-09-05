@@ -51,7 +51,9 @@
                             android:id="@+id/categorias"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="15dp"
+                            android:padding="25dp"
+                            android:drawableStart="@drawable/ic_catgorias"
+                            android:drawablePadding="5dp"
                             android:textColor="@color/black"
                             android:text="@string/categoria"
                             />
@@ -59,7 +61,9 @@
                             android:id="@+id/paises"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="15dp"
+                            android:padding="25dp"
+                            android:drawableStart="@drawable/ic_paices"
+                            android:drawablePadding="5dp"
                             android:textColor="@color/black"
                             android:text="@string/paises"
                             />

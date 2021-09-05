@@ -11,4 +11,6 @@
     <color name="yellow_700">#BFA836</color>
     <color name="gris">#EFEFEF</color>
     <color name="azul">#0077D6</color>
+    <color name="gris_oscuro">#424242</color>
+    <color name="gris_claro">#F2F2F2</color>
 </resources>
