@@ -1,14 +1,10 @@
-package com.nr.mercadolibre.Model.ProductCategory;
+package com.nr.mercadolibre.Model.Interactor.ProductCategory;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.util.Log;
 
-import com.nr.mercadolibre.Interface.Product.ProductInterface;
 import com.nr.mercadolibre.Interface.ProductCategory.ProductCategoryInterface;
 import com.nr.mercadolibre.Model.Entities.ListaProduct;
 import com.nr.mercadolibre.Model.Entities.Product;
-import com.nr.mercadolibre.Utils.ConexionInternet;
 import com.nr.mercadolibre.rest.ApiAdapter;
 
 import java.util.ArrayList;
@@ -35,11 +31,14 @@ public class ProductCategoryInteractor implements ProductCategoryInterface.Inter
                 ArrayList<Product> productos = listadeproductos.getResults();
                 if(productos.size()>0) {
                     successfulQuery(productos);
+                }else {
+                    Log.e("onResponsePC", "Response is null");
                 }
             }
 
             @Override
             public void onFailure(Call<ListaProduct> call, Throwable t) {
+                Log.e("onFailureCountry", "onFailure  falla el consumo"+t.toString());
             }
         });
 

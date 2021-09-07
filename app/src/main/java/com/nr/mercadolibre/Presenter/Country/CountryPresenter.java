@@ -1,15 +1,9 @@
 package com.nr.mercadolibre.Presenter.Country;
 
-import android.content.Context;
-
 import com.nr.mercadolibre.Interface.Country.CountryInterface;
-import com.nr.mercadolibre.Interface.Product.ProductInterface;
-import com.nr.mercadolibre.Model.Country.CountryInteractor;
+import com.nr.mercadolibre.Model.Interactor.Country.CountryInteractor;
 import com.nr.mercadolibre.Model.Entities.Country;
-import com.nr.mercadolibre.Model.Product.ProductInteractor;
-import com.nr.mercadolibre.View.Country.Paises;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CountryPresenter implements CountryInterface.InterfacePresenter {

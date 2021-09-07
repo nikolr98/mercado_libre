@@ -1,4 +1,4 @@
-package com.nr.mercadolibre.Utils;
+package com.nr.mercadolibre.Tools;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

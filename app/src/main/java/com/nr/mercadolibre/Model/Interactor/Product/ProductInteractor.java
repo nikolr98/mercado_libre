@@ -1,10 +1,12 @@
-package com.nr.mercadolibre.Model.Product;
+package com.nr.mercadolibre.Model.Interactor.Product;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.nr.mercadolibre.Interface.Product.ProductInterface;
 import com.nr.mercadolibre.Model.Entities.ListaProduct;
 import com.nr.mercadolibre.Model.Entities.Product;
-import com.nr.mercadolibre.Utils.ConexionInternet;
+import com.nr.mercadolibre.Tools.ConexionInternet;
 import com.nr.mercadolibre.rest.ApiAdapter;
 
 import java.util.ArrayList;
@@ -43,11 +45,13 @@ public class ProductInteractor implements ProductInterface.InterfaceModel {
                     successfulQuery(productos);
                 }else{
                     onFailureResult();
+                    Log.e("onResponseProduct", "Response is null");
                 }
             }
 
             @Override
             public void onFailure(Call<ListaProduct> call, Throwable t) {
+                Log.e("onFailureProduct", "onFailure  falla el consumo"+t.toString());
                 onFailureResult();
             }
         });

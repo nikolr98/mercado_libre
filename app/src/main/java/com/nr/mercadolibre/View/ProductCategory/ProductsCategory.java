@@ -11,10 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.nr.mercadolibre.Interface.Product.ProductInterface;
 import com.nr.mercadolibre.Interface.ProductCategory.ProductCategoryInterface;
 import com.nr.mercadolibre.Model.Entities.Product;
-import com.nr.mercadolibre.Presenter.Product.ProductPresenter;
 import com.nr.mercadolibre.Presenter.ProductCategory.ProductCategoryPresenter;
 import com.nr.mercadolibre.R;
 import com.nr.mercadolibre.View.Adapter.AdapterProducto;

@@ -1,9 +1,7 @@
 package com.nr.mercadolibre.Interface.Country;
 
 import com.nr.mercadolibre.Model.Entities.Country;
-import com.nr.mercadolibre.Model.Entities.Product;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CountryInterface {

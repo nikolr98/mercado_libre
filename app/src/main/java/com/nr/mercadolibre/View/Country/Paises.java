@@ -11,15 +11,11 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.nr.mercadolibre.Interface.Country.CountryInterface;
-import com.nr.mercadolibre.Model.Entities.Category;
 import com.nr.mercadolibre.Model.Entities.Country;
 import com.nr.mercadolibre.Presenter.Country.CountryPresenter;
 import com.nr.mercadolibre.R;
 import com.nr.mercadolibre.View.Category.Categorias;
-import com.nr.mercadolibre.View.Product.ProductList;
-import com.nr.mercadolibre.View.ProductSearch;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

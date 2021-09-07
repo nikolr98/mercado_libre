@@ -1,4 +1,4 @@
-package com.nr.mercadolibre.Model.Country;
+package com.nr.mercadolibre.Model.Interactor.Country;
 
 
 import android.util.Log;
@@ -33,13 +33,14 @@ public class CountryInteractor implements CountryInterface.InterfaceModel {
                     if (listCountry != null) {
                         successfulQuery(listCountry);
                     } else {
-                        Log.e("onResponseUsers", "Response is null");
+                        Log.e("onResponseCountry", "Response is null");
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<List<Country>> call, Throwable t) {
+                Log.e("onFailureCountry", "onFailure falla el consumo"+t.toString());
 
             }
 

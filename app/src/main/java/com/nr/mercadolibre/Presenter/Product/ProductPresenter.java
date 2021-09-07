@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.nr.mercadolibre.Interface.Product.ProductInterface;
 import com.nr.mercadolibre.Model.Entities.Product;
-import com.nr.mercadolibre.Model.Product.ProductInteractor;
+import com.nr.mercadolibre.Model.Interactor.Product.ProductInteractor;
 
 import java.util.ArrayList;
 

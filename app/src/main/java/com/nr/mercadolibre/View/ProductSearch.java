@@ -20,7 +20,6 @@ import com.nr.mercadolibre.Interface.Product.ProductInterface;
 import com.nr.mercadolibre.Model.Entities.Product;
 import com.nr.mercadolibre.Presenter.Product.ProductPresenter;
 import com.nr.mercadolibre.R;
-import com.nr.mercadolibre.View.Adapter.AdapterProducto;
 import com.nr.mercadolibre.View.Category.Categorias;
 import com.nr.mercadolibre.View.Country.Paises;
 import com.nr.mercadolibre.View.Product.ProductList;
