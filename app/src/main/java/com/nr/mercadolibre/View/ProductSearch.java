@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,12 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_search);
+        Log.i("ProductSearch", "onCreate DE ProductSearch ");
+        initElements();
+        menu.setOnClickListener(v -> OptionsMenu());
+    }
+
+    private void initElements() {
         mPresenter = new ProductPresenter(this,getApplicationContext());
         errorbusqueda=findViewById(R.id.errorbusqueda);
         reintento=findViewById(R.id.reintento);
@@ -52,18 +59,14 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
         progressbarLoading=findViewById(R.id.progressbar_apoddetail_loading);
         searchView = findViewById(R.id.searchview);
         searchView.setOnQueryTextListener(this);
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OptionsMenu();
-            }
-        });
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         imaBuscar.setVisibility(View.VISIBLE);
+        hideNetworkError();
+        hideError();
     }
 
     private void OptionsMenu() {
@@ -75,6 +78,8 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
 
         TextView categorias = findViewById(R.id.categorias);
         categorias.setOnClickListener(v -> {
+            Log.i("ProductSearch", "Menu categorias");
+            removeOptionsMenu();
             Intent i = new Intent(ProductSearch.this, Categorias.class);
             i.putExtra("flag", false);
             startActivity(i);
@@ -82,6 +87,8 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
         });
         TextView paises = findViewById(R.id.paises);
         paises.setOnClickListener(v -> {
+            Log.i("ProductSearch", "Menu paises");
+            removeOptionsMenu();
             Intent i = new Intent(ProductSearch.this, Paises.class);
             startActivity(i);
 
@@ -98,6 +105,7 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
 
     @Override
     public void requestData(String q) {
+        Log.i("ProductSearch", "Producto a buscar: "+q);
         imaBuscar.setVisibility(View.GONE);
         mPresenter.requestData(q);
     }
@@ -116,6 +124,7 @@ public class ProductSearch extends AppCompatActivity implements ProductInterface
 
     @Override
     public void showApodDetails(ArrayList<Product> productos) {
+        Log.i("ProductSearch", "Busqueda  Ok: "+productos.size());
         errorbusqueda.setVisibility(View.GONE);
         Intent showProductIntent = new Intent();
         showProductIntent.setClass(ProductSearch.this, ProductList.class);

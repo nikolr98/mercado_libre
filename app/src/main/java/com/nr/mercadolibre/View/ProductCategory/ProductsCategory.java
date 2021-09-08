@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +52,7 @@ public class ProductsCategory extends AppCompatActivity implements ProductCatego
 
     @Override
     public void requestData(String id_pais,String id_categoria) {
+        Log.i("ProductsCategory", "Productos por categoria "+"id_pais: "+id_pais+"  id_categoria  "+id_categoria);
         mPresenter.requestData(id_pais,id_categoria);
 
     }
@@ -69,6 +71,7 @@ public class ProductsCategory extends AppCompatActivity implements ProductCatego
 
     @Override
     public void showApodDetails(ArrayList<Product> productos) {
+        Log.i("ProductsCategory", "Productos por categoria "+"id_pais: "+id_pais+"  id_categoria  "+id_categoria);
         adapterProducto = new AdapterProducto(productos,this);
         recyclerView.setAdapter(adapterProducto);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

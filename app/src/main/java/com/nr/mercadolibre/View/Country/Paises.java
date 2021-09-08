@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,7 @@ public class Paises extends AppCompatActivity implements CountryInterface.Interf
 
     @Override
     public void requestData() {
+        Log.i("Paises", "Solicitar paises");
         presenter.requestData();
     }
 
@@ -52,6 +54,7 @@ public class Paises extends AppCompatActivity implements CountryInterface.Interf
 
     @Override
     public void showApodDetails(List<Country> countries) {
+        Log.i("Paises", "Solicitud   Ok: "+countries.size());
         ArrayList<String> list=new ArrayList<>();
         for (Country C:countries) {
             list.add(C.getName());

@@ -49,8 +49,8 @@ public class CategoryInteractor implements CategoryInterface.InterfaceModel {
     }
 
     @Override
-    public void successfulQuery(List<Category> countries) {
-        presenter.onSuccessResult(countries);
+    public void successfulQuery(List<Category> categories) {
+        presenter.onSuccessResult(categories);
     }
 
 

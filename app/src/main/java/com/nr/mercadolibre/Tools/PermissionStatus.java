@@ -29,7 +29,7 @@ public class PermissionStatus {
         this.activity = activity;
     }
 
-    public void permissionWriteSettings() {
+/*    public void permissionWriteSettings() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(!Settings.System.canWrite(context)){
                 Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -39,7 +39,7 @@ public class PermissionStatus {
                 context.startActivity(intent);
             }
         }
-    }
+    }*/
 
     public  boolean firstTry = false;
     public void reqPermissions(){
@@ -53,7 +53,7 @@ public class PermissionStatus {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for (String idPermission : permits){
                 if (activity.checkSelfPermission(idPermission) != PackageManager.PERMISSION_GRANTED){
-                    return false;
+                    return true;
                 }
             }
         }
@@ -87,9 +87,9 @@ public class PermissionStatus {
                 if (selectMsg){
                     reqPermissions();
                 }else {
-                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                 /*   Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                     intent.setData(Uri.parse("package:" + context.getPackageName()));
-                    context.startActivity(intent);
+                    context.startActivity(intent);*/
                 }
             }
         }).show();
@@ -104,7 +104,7 @@ public class PermissionStatus {
                     showDialogPermission("Debe aceptar los permisos para el correcto funcionamiento de la App.", true);
                 }
             }else {
-                permissionWriteSettings();
+               // permissionWriteSettings();
             }
         }
     }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,6 +42,7 @@ public class Categorias extends AppCompatActivity implements CategoryInterface.I
 
     @Override
     public void requestData( String id_pais) {
+        Log.i("Categorias", "Categorias prais: "+id_pais);
         presenter.requestData(id_pais);
 
     }
@@ -59,6 +61,7 @@ public class Categorias extends AppCompatActivity implements CategoryInterface.I
 
     @Override
     public void showApodDetails(List<Category> categories) {
+        Log.i("Categorias", "Consulta  Ok: "+categories.size());
         ArrayList<String> list=new ArrayList<>();
         for (Category C:categories) {
             list.add(C.getName());
